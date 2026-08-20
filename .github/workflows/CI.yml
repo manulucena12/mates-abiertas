@@ -27,6 +27,9 @@ jobs:
       - name: Audit dependencies
         run: bun audit
 
+      - name: Type check
+        run: bun run typecheck
+
       - name: Lint
         run: bun run lint
 
