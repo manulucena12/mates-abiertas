@@ -28,10 +28,12 @@ La idea es construir las matemáticas desde sus fundamentos y mostrar cómo unos
 El curso se encuentra en desarrollo y los contenidos irán creciendo progresivamente.
 
 ### Módulo 0 (Literatura matemática, en realización)
-- Notación matemática
+- Introducción
 - Constantes y variables
-- Operaciones
-- Proposiciones y conjuntos
+- El alfabeto griego
+- Proposiciones lógicas
+- Conjuntos
+- Intervalos
 - Cuantificadores
 
 ## Desarrollo
