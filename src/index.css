@@ -330,7 +330,7 @@ body {
   }
 }
 
-/* Markdown & KaTeX LaTeX Styles */
+/* Markdown & MathJax LaTeX Styles */
 .markdown-body {
   font-family: var(--font-sans);
   color: var(--text-main);
@@ -377,18 +377,18 @@ body {
   margin-bottom: 8px;
 }
 
-.markdown-body .katex-display {
+/* MathJax display math (centered $$...$$) */
+.markdown-body mjx-container[jax="CHTML"][display="true"] {
   margin: 1.8em 0;
-  padding: 20px;
-  background-color: var(--bg-main);
-  border: 1px solid var(--border-dark);
-  box-shadow: 3px 3px 0 var(--border-light);
+  font-size: 1.3em;
   overflow-x: auto;
 }
 
-.markdown-body .katex {
-  font-size: 1.15em;
+/* MathJax inline math */
+.markdown-body mjx-container[jax="CHTML"] {
+  font-size: 1.1em;
 }
+
 
 /* Footer */
 .footer {
