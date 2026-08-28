@@ -9,7 +9,7 @@ Este módulo sirve como introducción al curso. Antes de adentrarnos en el conte
 
 ## Constantes y variables
 
-René Descartes, en su obra *"La Geometría (1637)"*, usó las primeras letras del alfabeto ($a, b, c, \dots$) para representar valores que no cambiaban en ningún momento; a estas las llamaremos **constantes**. Para aquellas que podían variar, usó las últimas letras ($x, y, z$), a las que llamaremos **variables**. Esta es una convención habitual, no una regla obligatoria.
+René Descartes, en su obra *"La Geometría (1637)"*, usó las primeras letras del alfabeto ($a, b, c, \dots$) para representar valores que no cambiaban en ningún momento, a estas las llamaremos **constantes**. Para aquellas que podían variar, usó las últimas letras ($x, y, z$), a las que llamaremos **variables**. Esta es una convención habitual, no una regla obligatoria.
 
 Veamos un ejemplo simple. Si decimos que $a = 3$, entonces $a$ es una constante dentro de este contexto. En cambio, si decimos que $x$ es una variable, $x$ puede tomar cualquier valor: $1, 2, 10, -5, \dots$
 
@@ -24,10 +24,10 @@ Esto se lee *"dos veces $x$"*. Si $x = 4$, entonces $2x = 8$. Si $x = 10$, enton
 Podemos hacer expresiones un poco más completas:
 
 $$
-ax + 1
+ax + 1, \quad a = 1
 $$
 
-Donde $a$ es una constante. Si $a = 1$ y $x = 2$, entonces $ax + 1 = 3$. Si en cambio $x = 5$, entonces $ax + 1 = 6$. Observa que $a$ se queda fijo, pero al cambiar $x$ obtenemos distintos resultados.
+Donde $a$ es una constante. Si $x = 2$, entonces $ax + 1 = 3$. Si en cambio $x = 5$, entonces $ax + 1 = 6$. Observa que el valor de $a$ queda fijo, pero al cambiar $x$ obtenemos distintos resultados, pues el valor de $x$ sí puede variar.
 
 Para poder representar casos generales, como por ejemplo fórmulas, nos apoyaremos en variables y constantes, por ejemplo, la expresión general de un polinomio de grado dos es:
 
@@ -101,7 +101,7 @@ $$
 
 En matemáticas no solo trabajamos con números y expresiones. También necesitamos expresar afirmaciones y determinar si estas son verdaderas o falsas. Una **proposición** es cualquier enunciado que pueda ser verdadero o falso.
 
-Por ejemplo, si $x$ es una variable, la expresión $x > 5$ es una proposición abierta: su valor de verdad depende de qué valor le demos a $x$. Si $x = 7$, es verdadera; si $x = 3$, es falsa. Usaremos letras de la segunda mitad del alfabeto ($p, q, r, s$) para representar proposiciones.
+Por ejemplo, si $x$ es una variable, la expresión $x > 5$ es una proposición abierta: su valor de verdad depende de qué valor le demos a $x$. Si $x = 7$, es verdadera, mientras que si $x = 3$, es falsa. Usaremos letras de la segunda mitad del alfabeto ($p, q, r, s$) para representar proposiciones.
 
 Para combinar proposiciones entre sí usamos **conectores lógicos**. 
 
@@ -168,7 +168,8 @@ $$
 5 \notin A
 $$
 
-Quizás ya conozcas algunos conjuntos de elementos muy conocidos como los **números naturales**, usados para contar y representados por $\mathbb{N}$:
+Una serie de conjuntos que vale la pena recordar son los **conjuntos numéricos**.
+Quizás ya conozcas algunos, como los **números naturales**, usados para contar y representados por $\mathbb{N}$:
 
 $$
 \mathbb{N} = \{1, 2, 3, 4, 5, \dots\}
@@ -300,7 +301,7 @@ Nota: si no se especifica el conjunto de partida, se asume que trabajamos con n�
 
 ## Cuantificadores
 
-Las proposiciones abiertas son muy útiles; sin embargo, tenemos que comprobar caso por caso si los elementos de nuestro conjunto cumplen con dicha proposición. Aquí entran los **cuantificadores**, que nos permiten convertir estas proposiciones abiertas en proposiciones cerradas, indicando sobre qué valores queremos hacer una afirmación.
+Las proposiciones abiertas son muy útiles, sin embargo, tenemos que comprobar caso por caso si los elementos de nuestro conjunto cumplen con dicha proposición. Aquí entran los **cuantificadores**, que nos permiten convertir estas proposiciones abiertas en proposiciones cerradas, indicando sobre qué valores queremos hacer una afirmación.
 
 Sea el conjunto $A = \{1, 3, 5\}$ y $p(x): 2 \nmid x^2$. Dado que $1^2$, $3^2$ y $5^2$ no son divisibles entre 2, podemos usar el **cuantificador universal** ($\forall$) para expresar lo siguiente:
 
@@ -314,7 +315,7 @@ $$
 p(1) \land p(3) \land p(5)
 $$
 
-La abreviación parece poco útil debido a que este conjunto es muy pequeño; pero cuando trabajamos con conjuntos de elementos infinitos (por ejemplo, los números naturales $\mathbb{N}$), el cuantificador universal es muy útil.
+La abreviación parece poco útil debido a que este conjunto es muy pequeño, sin embargo, cuando trabajamos con conjuntos de elementos infinitos (por ejemplo, los números naturales $\mathbb{N}$), el cuantificador universal es muy útil.
 
 Pero, ¿qué ocurre si no necesitamos que la proposición sea verdadera para todos los elementos? ¿Y si nos basta con que sea verdadera para al menos uno? Para eso necesitamos otro cuantificador, concretamente el **existencial** ($\exists$). Vamos a redefinir nuestra proposición anterior: sea $p(x): 9 \mid x^2$ y el mismo conjunto $A$. Se da el caso de que ni $1^2$ ni $5^2$ son divisibles entre 9, pero $3^2$ sí lo es. Por tanto, podemos expresarlo como:
 
@@ -328,7 +329,7 @@ $$
 p(1) \lor p(3) \lor p(5)
 $$
 
-Llegamos al final de este módulo. Esto es simplemente una pincelada de lo que vas a encontrar en este curso; aún falta mucha notación que irá apareciendo en los módulos posteriores. Esperamos que te haya servido; en caso afirmativo, sería de gran ayuda que compartas el curso a más personas que lo necesiten y, si tienes una cuenta de GitHub, que le entregues una estrella al proyecto.
+Llegamos al final de este módulo. Esto es simplemente una pincelada de lo que vas a encontrar en este curso, aún falta mucha notación que irá apareciendo en los módulos posteriores. Esperamos que te haya servido, en caso afirmativo, sería de gran ayuda que compartas el curso a más personas que lo necesiten y, si tienes una cuenta de GitHub, que le entregues una estrella al [proyecto](https://github.com/manulucena12/mates-abiertas).
 
 Te dejamos algunos vídeos que pueden ayudarte:
 
