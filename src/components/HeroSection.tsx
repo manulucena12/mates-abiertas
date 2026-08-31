@@ -24,7 +24,14 @@ export default function HeroSection() {
             concepto, deduciendo resultados con lógica y sin memorizar fórmulas.
           </p>
 
-          <a href="#contents" className="btn-primary">
+          <a
+            href="#contents"
+            className="btn-primary"
+            onClick={(event) => {
+              event.preventDefault()
+              document.getElementById('contents')?.scrollIntoView({ behavior: 'smooth' })
+            }}
+          >
             Empezar curso
           </a>
         </div>

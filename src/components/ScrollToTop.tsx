@@ -1,21 +1,29 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigationType } from 'react-router-dom'
+
+interface ScrollState {
+  scrollTo?: string
+}
 
 export default function ScrollToTop() {
-  const { pathname, hash } = useLocation()
+  const location = useLocation()
+  const navigationType = useNavigationType()
+  const { pathname, hash, state } = location
+  const scrollTo = (state as ScrollState | null)?.scrollTo
 
   useEffect(() => {
-    if (hash) {
+    if (scrollTo && navigationType === 'PUSH') {
       setTimeout(() => {
-        const element = document.querySelector(hash)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
+        document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' })
+      }, 0)
+    } else if (hash) {
+      setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' })
       }, 0)
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
-  }, [pathname, hash])
+  }, [pathname, hash, scrollTo, navigationType])
 
   return null
 }
