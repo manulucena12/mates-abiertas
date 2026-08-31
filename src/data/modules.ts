@@ -1,4 +1,5 @@
 import modulo0Content from '../../modules/0_literatura.md?raw'
+import modulo1Content from '../../modules/1_ecuaciones.md?raw'
 
 export interface ModuleItem {
   id: string
@@ -27,6 +28,6 @@ export const MODULES: ModuleItem[] = [
     mathematician: 'Carl Friedrich Gauss',
     image: '/gauss.png',
     description: 'Entenderemos el álgebra sobre el que se sustentan las ecuaciones de toda la vida.',
-    content: modulo0Content,
+    content: modulo1Content,
   },
 ]

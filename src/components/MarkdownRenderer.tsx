@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import remarkMath from 'remark-math'
 import rehypeMathjaxChtml from 'rehype-mathjax/chtml'
+import rehypeRaw from 'rehype-raw'
 
 interface MarkdownRendererProps {
   content: string
@@ -11,7 +12,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
     <div className="markdown-body">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
-        rehypePlugins={[[rehypeMathjaxChtml, {
+        rehypePlugins={[rehypeRaw, [rehypeMathjaxChtml, {
           chtml: {
             fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
           }

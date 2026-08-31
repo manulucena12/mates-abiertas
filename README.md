@@ -27,7 +27,7 @@ La idea es construir las matemáticas desde sus fundamentos y mostrar cómo unos
 
 El curso se encuentra en desarrollo y los contenidos irán creciendo progresivamente.
 
-### Módulo 0 (Literatura matemática, en realización)
+### Módulo 0 (Literatura matemática)
 - Introducción
 - Constantes y variables
 - El alfabeto griego
@@ -35,6 +35,12 @@ El curso se encuentra en desarrollo y los contenidos irán creciendo progresivam
 - Conjuntos
 - Intervalos
 - Cuantificadores
+
+### Módulo 1 (Estudio de sistemas de ecuaciones lineales, en realización)
+- Introducción
+- Vectores
+- Dependencia lineal
+- Matrices
 
 ## Desarrollo
 
