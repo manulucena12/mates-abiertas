@@ -1,10 +1,35 @@
-import { useParams, Link } from 'react-router-dom'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { MODULES } from '../data/modules.ts'
-import MarkdownRenderer from '../components/MarkdownRenderer.tsx'
+
+const MarkdownRenderer = lazy(() => import('../components/MarkdownRenderer.tsx'))
 
 export default function ModulePage() {
   const { id } = useParams<{ id: string }>()
-  const moduleItem = MODULES.find((m) => m.id === id)
+  const moduleItem = MODULES.find((module) => module.id === id)
+  const [content, setContent] = useState<string | null>(null)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    if (!moduleItem) return
+
+    let cancelled = false
+    setContent(null)
+    setError(false)
+
+    moduleItem.loadContent().then(
+      (loadedContent) => {
+        if (!cancelled) setContent(loadedContent)
+      },
+      () => {
+        if (!cancelled) setError(true)
+      },
+    )
+
+    return () => {
+      cancelled = true
+    }
+  }, [moduleItem])
 
   if (!moduleItem) {
     return (
@@ -28,7 +53,15 @@ export default function ModulePage() {
         </div>
 
         <div className="module-content-card">
-          <MarkdownRenderer content={moduleItem.content} />
+          {error ? (
+            <p>No se pudo cargar el módulo. Inténtalo de nuevo.</p>
+          ) : content === null ? (
+            <p aria-live="polite">Cargando módulo...</p>
+          ) : (
+            <Suspense fallback={<p aria-live="polite">Preparando contenido...</p>}>
+              <MarkdownRenderer content={content} />
+            </Suspense>
+          )}
         </div>
       </div>
     </article>

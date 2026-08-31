@@ -1,6 +1,3 @@
-import modulo0Content from '../../modules/0_literatura.md?raw'
-import modulo1Content from '../../modules/1_ecuaciones.md?raw'
-
 export interface ModuleItem {
   id: string
   number: number
@@ -8,8 +5,14 @@ export interface ModuleItem {
   mathematician: string
   image: string
   description: string
-  content: string
+  loadContent: () => Promise<string>
 }
+
+const loadLiterature = () =>
+  import('../../modules/0_literatura.md?raw').then((module) => module.default)
+
+const loadEquations = () =>
+  import('../../modules/1_ecuaciones.md?raw').then((module) => module.default)
 
 export const MODULES: ModuleItem[] = [
   {
@@ -19,7 +22,7 @@ export const MODULES: ModuleItem[] = [
     mathematician: 'René Descartes',
     image: '/descartes.png',
     description: 'Empezaremos desde lo más básico para que puedas leer el lenguaje matemático.',
-    content: modulo0Content,
+    loadContent: loadLiterature,
   },
   {
     id: '1',
@@ -28,6 +31,6 @@ export const MODULES: ModuleItem[] = [
     mathematician: 'Carl Friedrich Gauss',
     image: '/gauss.png',
     description: 'Entenderemos el álgebra sobre el que se sustentan las ecuaciones de toda la vida.',
-    content: modulo1Content,
+    loadContent: loadEquations,
   },
 ]
