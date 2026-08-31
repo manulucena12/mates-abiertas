@@ -193,3 +193,228 @@ $$
  a_{23} = 6 
 $$
  
+## Rango
+
+Una matriz está formada por varios vectores, pero no todos aportan necesariamente algo nuevo, ya vimos que un vector puede ser combinación lineal de otros, en cuyo caso no añade ninguna información que no tuviéramos ya. El rango de una matriz mide precisamente esto: cuántos de sus vectores columna son realmente independientes entre sí, es decir, cuánta información genuinamente distinta contiene la matriz con la que estamos trabajando.
+
+Si una matriz está formada por tres vectores, su rango será como mucho tres, ya que nunca puede haber más direcciones independientes que vectores tengamos. Será exactamente tres si los tres son linealmente independientes entre sí, dos si solo dos de ellos lo son (y el tercero depende de esos dos), y así sucesivamente.
+
+Veamos un ejemplo, tomemos la matriz de la base canónica de $\mathbb{R}^3$ que ya vimos en el apartado anterior:
+ 
+$$
+A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \quad \vec{v}_1=(1,0,0), \; \vec{v}_2=(0,1,0), \; \vec{v}_3=(0,0,1)
+$$
+
+Para determinar su rango, tenemos que ver la cantidad de vectores que no son combinación lineal entre sí, es decir, que son linealmente independientes.
+
+$$
+\mathrm{Rg}(A) = 3 \iff \nexists\, \vec{v}_k \; : \; \vec{v}_k = \sum_{\substack{i=1 \\ i \neq k}}^{3} \lambda_i \vec{v}_i, \quad \lambda_i \in \mathbb{R}
+$$
+
+Empezemos con el primer vector ($k=1$):
+
+$$
+ \vec{v}_1 = \lambda_2 \vec{v}_2 + \lambda_3 \vec{v}_3, \quad \lambda_2, \lambda_3 \in \mathbb{R}
+$$
+
+Conocemos estos tres vectores, la pregunta es: ¿existen $\lambda_2$ y $\lambda_3$ que cumplan esta igualdad?, fijate bien en el primer componente de cada vector, el vector $\vec{v}_1$ tiene un $1$, mientras que los otros dos tienen un $0$. Por tanto, no existe ningún valor que podamos darle a $\lambda_2$ y a $\lambda_3$ porque todos los vectores que obtendremos usando una combinación lineal de $\vec{v}_2$ y $\vec{v}_3$ tendrán un $0$ siempre como primer componente. Por lo tanto, $\vec{v}_1$ es linealmente independiente de $\vec{v}_2$ y $\vec{v}_3$.
+
+Sigamos con el segundo vector ($k=2$):
+
+$$
+ \vec{v}_2 = \lambda_1 \vec{v}_1 + \lambda_3 \vec{v}_3, \quad \lambda_1, \lambda_3 \in \mathbb{R}
+$$
+
+Aquí pasa lo mismo que antes, pero con el segundo componente. El vector $\vec{v}_2$ tiene un $1$, mientras que los otros dos tienen un $0$. Por lo tanto, no existe ningún valor que podamos darle a $\lambda_1$ y a $\lambda_3$, $\vec{v}_2$ es también linealmente independiente.
+
+Prueba ahora a estudiar el tercer vector, verás que pasa lo mismo, también es linealmente independiente, por tanto podemos concluir que el rango de la matriz es 3.
+
+## Transformaciones lineales
+
+Lo que más nos interesa de las matrices, es las operaciones que podemos realizar con ellas, concretamente las operaciones que pueden hacer sobre un vector, esta puede convertirlo en otro vector distinto, incluso de una dimensión diferente. Esto es exactamente lo que hace una función matemática, piensa en $f(x) = x^2$, que toma un valor y te devuelve otro. Una matriz, cuando actúa sobre un vector, hace lo mismo: **transforma** el vector de entrada en uno de salida. Por eso la llamamos **transformación lineal**.
+
+Escribimos una transformación como:
+ 
+$$
+T: \mathbb{R}^n \to \mathbb{R}^m
+$$
+
+Donde $T$ es el nombre de la transformación, $\mathbb{R}^n$ es el **espacio de origen** (la dimensión de los vectores que le entregamos) y $\mathbb{R}^m$ es el **espacio de destino** (la dimensión de los vectores que obtenemos tras la transformación). Si $n = m$, es decir, si el vector de salida vive en el mismo espacio que el de entrada, decimos que la transformación es un **endomorfismo** (del griego *endo*, "dentro") pues no salimos del espacio en el que empezamos.
+
+Ya sabemos que una matriz $A$ de dimensión $m \times n$ está formada por $n$ vectores columna $\vec{v}_1, \vec{v}_2, \dots, \vec{v}_n \in \mathbb{R}^m$. Dado un vector $\vec{x} = (x_1, x_2, \dots, x_n) \in \mathbb{R}^n$, definimos la transformación de $\vec{x}$ mediante $A$ como:
+ 
+$$
+T(\vec{x}) = A\vec{x} = \sum_{i=1}^{n} x_i \vec{v}_i = x_1 \vec{v}_1 + x_2 \vec{v}_2 + \dots + x_n \vec{v}_n
+$$
+
+Fíjate en que no hemos definido ninguna operación nueva: transformar $\vec{x}$ mediante $A$ es, literalmente, hacer una combinación lineal de las columnas de $A$, usando las componentes de $\vec{x}$ como parámetros $\lambda_i$. Veámoslo con la matriz identidad de $\mathbb{R}^3$ que ya conocemos, y un vector cualquiera $\vec{x}=(2,-1,5)$:
+
+$$
+T(\vec{x}) = 2\vec{i} + (-1)\vec{j} + 5\vec{k} = 2(1,0,0) - 1(0,1,0) + 5(0,0,1) = (2,-1,5)
+$$
+
+Esta transformación es especial, pues nos da el vector de entrada sin alterar, debido a esto, llamamos a la matriz de la base canónica la matriz identidad.
+
+Veamos una transformación $T: \mathbb{R}^3 \to \mathbb{R}^4$, representada por una matriz $A$ de dimensión $4 \times 3$ (sus columnas viven en $\mathbb{R}^4$, y necesitamos $3$ de ellas para poder combinarlas con un vector de $\mathbb{R}^3$):
+ 
+$$
+A = \begin{pmatrix} 1 & 0 & 2 \\ 2 & 1 & -1 \\ 0 & 3 & 1 \\ -1 & 2 & 0 \end{pmatrix}, \qquad \vec{v} = (2, 1, -1)
+$$
+ 
+Aplicamos exactamente la misma idea de antes: combinar las columnas de $A$, usando las componentes de $\vec{v}$ como parámetros.
+ 
+$$
+T(\vec{v}) = A\vec{v} = 2\begin{pmatrix}1\\2\\0\\-1\end{pmatrix} + 1\begin{pmatrix}0\\1\\3\\2\end{pmatrix} + (-1)\begin{pmatrix}2\\-1\\1\\0\end{pmatrix} = \begin{pmatrix}2\\4\\0\\-2\end{pmatrix} + \begin{pmatrix}0\\1\\3\\2\end{pmatrix} + \begin{pmatrix}-2\\1\\-1\\0\end{pmatrix} = \begin{pmatrix}0\\6\\2\\0\end{pmatrix}
+$$
+ 
+Entramos con un vector de $\mathbb{R}^3$ y obtenemos un vector de $\mathbb{R}^4$: la transformación cambió la dimensión, tal como anunciaba su notación $T:\mathbb{R}^3\to\mathbb{R}^4$. Fíjate que las transformaciones lineales requieren que la matriz tenga tantos vectores como dimensiones tenga el espacio de origen, y que la dimensión del espacio de destino sea igual a la dimensión de los vectores que forman la matriz.
+
+## Descomposición y estudio de sistemas de ecuaciones
+
+Volvamos al sistema del inicio:
+
+$$
+\begin{cases}
+x + y = 2 \\
+3x - y = 2
+\end{cases} \quad
+$$
+
+Ya tenemos todo lo necesario para poder entender la naturaleza de este sistema. Primero, vamos a obtener sus componentes, a la izquierda tenemos incógnitas, acompañadas de sus coeficientes y a la derecha los términos independientes, ¿y si separamos todo?
+
+Si obtenemos únicamente los coeficientes de las incógnitas, obtendremos el siguiente endomorfismo:
+
+$$
+T:\mathbb{R}^2 \to \mathbb{R}^2,
+\qquad
+A =
+\begin{pmatrix}
+1 & 1 \\
+3 & -1
+\end{pmatrix}
+$$
+
+Tenemos una transformación lineal definida, por tanto el resto de componentes han de ser vectores, el vector de incógnitas que será la entrada de nuestra transformación y el vector solucion que será la salida
+
+$$
+\vec{x} = (x,y), \quad \vec{b} = (2,2)
+$$
+
+Por tanto, al resolver un sistema de ecuaciones, buscamos un vector de entrada $\vec{x}$ que, tras ser transformado por $A$, obtengamos $\vec{b}$, siendo la ecuación fundamental:
+
+$$
+ A\vec{x} = \vec{b} 
+$$
+
+No todas las transformaciones lineales tienen que ser endomorfismos. De forma general, podemos tener un sistema de la forma:
+
+$$
+A\vec{x} = \vec{b}, \qquad A \in \mathbb{R}^{m \times n}, \; \vec{x} \in \mathbb{R}^n, \; \vec{b} \in \mathbb{R}^m
+$$
+
+Esto quiere decir que la matriz $A$ tendrá $m$ filas y $n$ columnas, por tanto, la transformación lineal será $T: \mathbb{R}^n \to \mathbb{R}^m$. Y nuestro sistema ahora queda de la forma:
+
+$$ 
+\begin{cases}
+  a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\
+  a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\
+  \vdots \\
+  a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = b_m
+\end{cases} 
+$$
+
+Una vez obtenidos todos los componentes, solo nos queda estudiar el sistema, para ello, vamos a utilizar el teorema de Rouché-Fröbenius, que nos ayuda a determinar si un sistema tiene solución o no simplemente obteniendo el rango de las dos siguientes matrices:
+
+$$
+A = \begin{pmatrix}
+  a_{11} & a_{12} & \dots & a_{1n} \\
+  a_{21} & a_{22} & \dots & a_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  a_{m1} & a_{m2} & \dots & a_{mn}
+\end{pmatrix}, \qquad 
+
+A|b = \begin{pmatrix}
+  a_{11} & a_{12} & \dots & a_{1n} & b_1 \\
+  a_{21} & a_{22} & \dots & a_{2n} & b_2 \\
+  \vdots & \vdots & \ddots & \vdots & \vdots \\
+  a_{m1} & a_{m2} & \dots & a_{mn} & b_m
+\end{pmatrix}
+$$
+
+La primera ya la conocemos, es la matriz de coeficientes, la transformación lineal. La segunda es simplemente la matriz que obtenemos al incluir el vector de términos independientes como una columna más de la matriz. Se suele representar con una barra vertical para separar ambos componentes y la llamamos matriz ampliada.
+
+¿Por qué ampliamos esta matriz? ¿qué relación tiene el rango de una con la otra?, todo converge a lo mismo, la matriz $A$ está compuesta por $n$ vectores columna, y la matriz $A|b$ tiene exactamente $n+1$ vectores columna. Por tanto:
+
+$$
+Rg(A) \leq n\quad Rg(A|b) \leq n+1
+$$
+
+Recuerda que el rango de una matriz es el número de vectores linealmente independientes que podemos obtener de ella. Por tanto, si el rango de $A$ y $A|b$ es el mismo, significará que el vector de términos independientes es una combinación lineal de los vectores de $A$. Es decir, una solución del sistema. Concluimos entonces que:
+
+- Si $Rg(A) = Rg(A|b)$, el sistema tiene solución, llamado sistema compatible.
+- Si $Rg(A) \neq Rg(A|b)$, el sistema no tiene solución, llamado sistema incompatible.
+
+Hemos dado un gran paso, ahora antes de resolver un sistema, sabemos si tiene solución o no. Sólo nos queda responder a la pregunta ¿cuántas soluciones tiene un sistema compatible?
+
+Recordemos que tanto $A$ como $b$ están predefinidos, son datos del problema, por tanto, el único vector que podemos alterar es el vector de entrada, es decir, $\vec{x}$. Recordemos su definición:
+
+$$ 
+\vec{x} = (x_1, x_2, \dots, x_n) \in \mathbb{R}^n 
+$$
+
+Es decir tenemos un número $n$ de incógnitas, si este número de incógnitas es igual al rango, obtendremos una solución única, debido a que tenemos la información justa y necesaria para obtener una única solución, a estos sistemas se les conoce como sistemas compatibles determinados.
+
+Sin embargo, si tenemos más incógnitas que vectores linealmente independientes, es decir, si $n > Rg(A)$, obtendremos infinitas soluciones, se les conoce como sistemas compatibles indeterminados. 
+
+Veamos algunos ejemplos de sistemas de ecuaciones:
+
+$$
+\begin{cases}
+x_1+x_2=5\\
+2x_1+2x_2=12
+\end{cases}
+$$
+
+El rango de la matriz de coeficientes $A$ es $1$, puedes verlo fácilmente porque ambos vectores columna son iguales, sin embargo, el rango de la matriz ampliada $A|b$ es $2$, por tanto, no existe solución para este sistema de ecuaciones.
+
+$$
+\begin{cases}
+x_1+x_2=2\\
+3x_1-x_2=2
+\end{cases} \quad
+$$
+
+En este caso, el rango de $A$ es $2$, y si te fijas bien, podemos obtener $\vec{b}$ si sumamos ambas columnas de $A$, es decir, mediante una combinación lineal:
+
+$$ 
+\begin{pmatrix} 1 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \vec{b}\quad (\lambda_1 = 1, \lambda_2 = 1, \vec{e}_1 = \vec{v}_1, \vec{e}_2 = \vec{v}_2)
+$$
+
+Por tanto el rango de $A|b$ es $2$, y el número de incógnitas es $2$, por lo que el sistema es compatible determinado, es decir, tiene una única solución ($x_1=x_2=1$).
+
+$$
+\begin{cases}
+x_1+x_2=5\\
+2x_1+2x_2=10
+\end{cases}
+$$
+
+En este caso, la ecuación de la segunda fila es el doble de la primera, por lo que podemos obtener:
+
+$$
+\begin{cases}
+x_1+x_2=5
+\end{cases}
+$$
+
+Tenemos $Rg(A) = Rg(A|b) = 1$, sin embargo tenemos dos incognitas por lo que el sistema es compatible determinado. Por tanto tiene infinitas soluciones.
+
+$$
+x_1=5-x_2 (\forall x_2 \in \mathbb{R})
+$$
+
+No nos vamos a extender en las resoluciones en si, ya que no es el objetivo principal del capítulo, queremos que entiendas todos los componentes que existen en un sistema de ecuaciones y cómo se relacionan entre sí para poder llegar a una solución lógica y no mecanizada. Llegamos al final de este módulo. Esperamos que te haya servido, en caso afirmativo, sería de gran ayuda que compartas el curso a más personas que lo necesiten y, si tienes una cuenta de GitHub, que le entregues una estrella al [proyecto](https://github.com/manulucena12/mates-abiertas).
+
+Te dejamos un curso que puede ayudarte:
+
+- [Esencia del Álgebra Lineal - Por 3Blue1Brown](https://youtube.com/playlist?list=PLIb_io8a5NB2DddFf-PwvZDCOUNT1GZoA&si=MucnF-VJOQ4UyWcz)
